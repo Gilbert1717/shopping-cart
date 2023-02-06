@@ -29,6 +29,18 @@ public static class SeedData
             {
                 Order = john,
                 Product = tv,
+                Quantity = 2
+            },
+            new OrderedProduct
+            {
+                Order = john,
+                Product = iMac,
+                Quantity = 1
+            },
+            new OrderedProduct
+            {
+                Order = jeff,
+                Product = tv,
                 Quantity = 1
             },
             new OrderedProduct
@@ -39,7 +51,7 @@ public static class SeedData
             },
             new OrderedProduct
             {
-                Order = john,
+                Order = jeff,
                 Product = iMac,
                 Quantity = 1
             },

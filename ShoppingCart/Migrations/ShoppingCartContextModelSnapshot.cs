@@ -102,7 +102,7 @@ namespace ShoppingCart.Migrations
                         .IsRequired();
 
                     b.HasOne("ShoppingCart.Models.Product", "Product")
-                        .WithMany("OrderedProducts")
+                        .WithMany()
                         .HasForeignKey("ProductID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -113,11 +113,6 @@ namespace ShoppingCart.Migrations
                 });
 
             modelBuilder.Entity("ShoppingCart.Models.Order", b =>
-                {
-                    b.Navigation("OrderedProducts");
-                });
-
-            modelBuilder.Entity("ShoppingCart.Models.Product", b =>
                 {
                     b.Navigation("OrderedProducts");
                 });

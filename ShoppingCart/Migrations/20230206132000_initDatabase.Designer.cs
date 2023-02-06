@@ -12,7 +12,7 @@ using ShoppingCart.Data;
 namespace ShoppingCart.Migrations
 {
     [DbContext(typeof(ShoppingCartContext))]
-    [Migration("20230206091027_initDatabase")]
+    [Migration("20230206132000_initDatabase")]
     partial class initDatabase
     {
         /// <inheritdoc />
@@ -105,7 +105,7 @@ namespace ShoppingCart.Migrations
                         .IsRequired();
 
                     b.HasOne("ShoppingCart.Models.Product", "Product")
-                        .WithMany("OrderedProducts")
+                        .WithMany()
                         .HasForeignKey("ProductID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -116,11 +116,6 @@ namespace ShoppingCart.Migrations
                 });
 
             modelBuilder.Entity("ShoppingCart.Models.Order", b =>
-                {
-                    b.Navigation("OrderedProducts");
-                });
-
-            modelBuilder.Entity("ShoppingCart.Models.Product", b =>
                 {
                     b.Navigation("OrderedProducts");
                 });

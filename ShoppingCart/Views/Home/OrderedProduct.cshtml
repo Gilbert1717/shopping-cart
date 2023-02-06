@@ -21,7 +21,8 @@
 <table class="table">
     <thead class="thead-light">
     <tr>
-        <th>@Html.DisplayNameFor(model => model.OrderedProducts[0].Product.ProductID)</th>
+        <th>@Html.DisplayNameFor(model => model.OrderedProducts[0].Order.CustomerName)</th>
+        <th>@Html.DisplayNameFor(model => model.OrderedProducts[0].Order.OrderDate)</th>
         <th>@Html.DisplayNameFor(model => model.OrderedProducts[0].Product.Name)</th>
         <th>@Html.DisplayNameFor(model => model.OrderedProducts[0].Product.Price)</th>
         <th>@Html.DisplayNameFor(model => model.OrderedProducts[0].Quantity)</th>
@@ -32,7 +33,8 @@
     @foreach (var item in Model.OrderedProducts)
     {
         <tr>
-            <td>@Html.DisplayFor(modelItem => item.Product.ProductID)</td>
+            <td>@Html.DisplayFor(modelItem => item.Order.CustomerName)</td>
+            <td>@Html.DisplayFor(modelItem => item.Order.OrderDate)</td>
             <td>@Html.DisplayFor(modelItem => item.Product.Name)</td>
             <td>@Html.DisplayFor(modelItem => item.Product.Price)</td>
             <td>@Html.DisplayFor(modelItem => item.Quantity)</td>
