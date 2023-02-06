@@ -2,8 +2,13 @@
 
 <div>
     <h1 class="display-4">All Products</h1>
-    
-    @if(Model.Any()) {
+
+    <p>
+        <a asp-action="Create">Add New Product</a>
+    </p>
+
+    @if (Model.Any())
+    {
         <table class="table">
             <thead class="thead-light">
             <tr>
@@ -14,7 +19,8 @@
             </tr>
             </thead>
             <tbody>
-            @foreach(var product in Model) {
+            @foreach (var product in Model)
+            {
                 <tr>
                     <td>@Html.DisplayFor(x => product.ProductID)</td>
                     <td>@Html.DisplayFor(x => product.Name)</td>
@@ -23,7 +29,9 @@
             }
             </tbody>
         </table>
-    } else {
+    }
+    else
+    {
         <p class="alert alert-info">no products at the moment.</p>
     }
 </div>

@@ -15,7 +15,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "Week6_Lectorial": {
+    "ShoppingCart": {
       "commandName": "Project",
       "dotnetRunMessages": "true",
       "launchBrowser": true,
