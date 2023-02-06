@@ -1,59 +1,53 @@
-﻿using Week6_Lectorial.Models;
+﻿using ShoppingCart.Models;
 
-namespace Week6_Lectorial.Data;
+namespace ShoppingCart.Data;
 
 public static class SeedData
 {
     public static void Initialize(IServiceProvider serviceProvider)
     {
-        var context = serviceProvider.GetRequiredService<Week6LectorialContext>();
+        var context = serviceProvider.GetRequiredService<ShoppingCartContext>();
 
         // Look for stores.
-        if(context.Stores.Any())
+        if(context.Orders.Any())
             return; // DB has already been seeded.
 
-        // Stores.
-        var melbourne = new Store { Name = "Melbourne" };
-        var geelong = new Store { Name = "Geelong" };
-        var preston = new Store { Name = "Preston" };
+        // Orders.
+        var john = new Order { OrderDate = DateTime.Now, CustomerName = "John", DeliveryAddress = "Melbourne", DeliveredDate = DateTime.Now + TimeSpan.FromDays(5)};
+        var jeff = new Order { OrderDate = DateTime.Now, CustomerName = "Jeff", DeliveryAddress = "Geelong", DeliveredDate = DateTime.Now + TimeSpan.FromDays(7)};
 
         // Products.
         var tv = new Product { Name = "TV", Price = 999.95m };
         var speakers = new Product { Name = "Speakers", Price = 500 };
-        var entertainmentUnit = new Product { Name = "Entertainment Unit", Price = 220 };
+        var iMac = new Product { Name = "iMac", Price = 3000 };
+        var iPhone = new Product { Name = "iPhone", Price = 2000 };
 
-        context.Stores.AddRange(melbourne, geelong, preston);
-        context.Products.AddRange(tv, speakers, entertainmentUnit);
-        context.StoreProducts.AddRange(
-            new StoreProduct
+        context.Orders.AddRange(john, jeff);
+        context.Products.AddRange(tv, speakers, iMac, iPhone);
+        context.OrderedProducts.AddRange(
+            new OrderedProduct
             {
-                Store = melbourne,
+                Order = john,
                 Product = tv,
-                Quantity = 10
-            },
-            new StoreProduct
-            {
-                Store = melbourne,
-                Product = speakers,
-                Quantity = 5
-            },
-            new StoreProduct
-            {
-                Store = melbourne,
-                Product = entertainmentUnit,
                 Quantity = 1
             },
-            new StoreProduct
+            new OrderedProduct
             {
-                Store = geelong,
-                Product = tv,
-                Quantity = 2
-            },
-            new StoreProduct
-            {
-                Store = geelong,
+                Order = jeff,
                 Product = speakers,
-                Quantity = 3
+                Quantity = 1
+            },
+            new OrderedProduct
+            {
+                Order = john,
+                Product = iMac,
+                Quantity = 1
+            },
+            new OrderedProduct
+            {
+                Order = jeff,
+                Product = iPhone,
+                Quantity = 2
             }
             // NOTE: The preston store intentionally has no products seeded.
         );

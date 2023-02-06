@@ -1,0 +1,54 @@
+﻿@model ShoppingCart.ViewModels.ProductViewModel
+
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+
+<form asp-controller="Home" asp-action="Index" method="get">
+    <p>
+        <select asp-for="productName" asp-items="Model.productNameList">
+            <option value="">All</option>
+        </select>
+        <input type="submit" value="Filter" />
+    </p>
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.OrderedProducts[0].Product.ProductID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OrderedProducts[0].Product.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OrderedProducts[0].Product.Price)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var item in Model.OrderedProducts) {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Product.ProductID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Product.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Product.Price)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div>
+    <a asp-action="ProductDisplay" class="btn btn-primary">Back</a>
+</div>
+
