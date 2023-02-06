@@ -1,13 +1,12 @@
 ﻿@model ShoppingCart.ViewModels.ProductViewModel
 
-
-<h1>Index</h1>
+<h1>Orderred Products</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create">Add New Product</a>
 </p>
 
-<form asp-controller="Home" asp-action="Index" method="get">
+<form asp-controller="Home" asp-action="OrderedProduct" method="get">
     <p>
         <select asp-for="productName" asp-items="Model.productNameList">
             <option value="">All</option>
@@ -49,6 +48,6 @@
 </table>
 
 <div>
-    <a asp-action="ProductDisplay" class="btn btn-primary">Back</a>
+    <a asp-action="Index" class="btn btn-primary">Back</a>
 </div>
 

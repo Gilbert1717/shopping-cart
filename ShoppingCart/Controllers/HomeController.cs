@@ -15,13 +15,15 @@ public class HomeController: Controller
         _context = context;
     }
     
-    // public IActionResult Index()
-    // {
-    //     var orders = _context.Orders.OrderBy(x => x.CustomerName).ToList();
-    //     return View(orders);
-    // }
+    public IActionResult Index()
+    {
+        
+        var products = _context.Products.OrderBy(x => x.ProductID).ToList();
+        return View(products);
+    }
     
-    public IActionResult ProductDisplay(string productName)
+    
+    public IActionResult OrderedProduct(string productName)
     {
         var orderedProducts = _context.OrderedProducts.Select(x => x);
         var names = _context.OrderedProducts.Select(x => x.Product.Name).Distinct().OrderBy(x => x);
@@ -38,25 +40,26 @@ public class HomeController: Controller
         return View(productViewModel);
     }
     
+    [HttpGet]
+    public IActionResult Create()
+    {
+        return View();
+    }
     
+    [HttpPost]
     public IActionResult Create([Bind("Name, Price")] Product product)
     {
         if(ModelState.IsValid)
         {
             _context.Add(product);
             _context.SaveChangesAsync();
-            return RedirectToAction("ProductDisplay");
+            return RedirectToAction("Index");
         }
 
         return View(product);
     }
     
-    public IActionResult Index()
-    {
-        
-        var products = _context.Products.OrderBy(x => x.ProductID).ToList();
-        return View(products);
-    }
+    
     
     
 
