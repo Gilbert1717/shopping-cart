@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using ShoppingCart.Data;
 using ShoppingCart.Models;
+using ShoppingCart.Utilities;
 using ShoppingCart.ViewModels;
 
 namespace ShoppingCart.Controllers;
@@ -49,6 +50,8 @@ public class HomeController: Controller
     [HttpPost]
     public IActionResult Create([Bind("Name, Price")] Product product)
     {
+        if(product.Price.HasMoreThanTwoDecimalPlaces())
+            ModelState.AddModelError(nameof(product.Price), "Amount cannot have more than 2 decimal places.");
         if(ModelState.IsValid)
         {
             _context.Add(product);
