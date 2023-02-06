@@ -86,11 +86,14 @@ namespace ShoppingCart.Migrations
                         .HasColumnType("nvarchar(50)");
 
                     b.Property<decimal>("Price")
-                        .HasColumnType("decimal");
+                        .HasColumnType("money");
 
                     b.HasKey("ProductID");
 
-                    b.ToTable("Products");
+                    b.ToTable("Products", t =>
+                        {
+                            t.HasCheckConstraint("CH_Product_Price", "Price > 0");
+                        });
                 });
 
             modelBuilder.Entity("ShoppingCart.Models.OrderedProduct", b =>

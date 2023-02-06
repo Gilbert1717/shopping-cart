@@ -19,5 +19,6 @@ public class ShoppingCartContext : DbContext
 
         // Setup composite primary key.
         builder.Entity<OrderedProduct>().HasKey(x => new { x.OrderID, x.ProductID });
+        builder.Entity<Product>().ToTable(b => b.HasCheckConstraint("CH_Product_Price", "Price > 0"));
     }
 }

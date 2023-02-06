@@ -13,7 +13,7 @@ public class Product
     public string Name { get; set; }
 
     [Required]
-    [Column(TypeName = "decimal")]
+    [Column(TypeName = "money")]
     [DataType(DataType.Currency)]
     [Range(double.Epsilon, double.MaxValue, ErrorMessage = "Price must be a positive number")]
     public decimal Price { get; set; }

@@ -1,6 +1,4 @@
-﻿using ShoppingCart.Models;
-
-namespace ShoppingCart.Utilities;
+﻿namespace ShoppingCart.Utilities;
 
 public static class MiscellaneousExtensionUtilities
 {

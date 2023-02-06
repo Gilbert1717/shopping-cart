@@ -47,15 +47,18 @@ public class HomeController: Controller
         return View();
     }
     
+    
     [HttpPost]
     public IActionResult Create([Bind("Name, Price")] Product product)
     {
         if(product.Price.HasMoreThanTwoDecimalPlaces())
             ModelState.AddModelError(nameof(product.Price), "Amount cannot have more than 2 decimal places.");
+        if(product.Price <= 0)
+            ModelState.AddModelError(nameof(product.Price), "Price must be a positive number");
         if(ModelState.IsValid)
         {
             _context.Add(product);
-            _context.SaveChangesAsync();
+            _context.SaveChanges();
             return RedirectToAction("Index");
         }
 
