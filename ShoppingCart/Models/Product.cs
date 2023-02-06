@@ -17,6 +17,4 @@ public class Product
     [DataType(DataType.Currency)]
     [Range(double.Epsilon, double.MaxValue, ErrorMessage = "Price must be a positive number")]
     public decimal Price { get; set; }
-
-    public virtual ICollection<OrderedProduct> OrderedProducts { get; set; }
 }
