@@ -21,7 +21,7 @@ public class HomeController: Controller
     //     return View(orders);
     // }
     
-    public IActionResult Index(string productName)
+    public IActionResult ProductDisplay(string productName)
     {
         var orderedProducts = _context.OrderedProducts.Select(x => x);
         var names = _context.OrderedProducts.Select(x => x.Product.Name).Distinct().OrderBy(x => x);
@@ -45,13 +45,13 @@ public class HomeController: Controller
         {
             _context.Add(product);
             _context.SaveChangesAsync();
-            RedirectToAction("ProductDisplay");
+            return RedirectToAction("ProductDisplay");
         }
 
         return View(product);
     }
     
-    public IActionResult ProductDisplay()
+    public IActionResult Index()
     {
         
         var products = _context.Products.OrderBy(x => x.ProductID).ToList();
