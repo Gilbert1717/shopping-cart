@@ -1,0 +1,32 @@
+﻿@model Store
+
+<h1>Store</h1>
+
+<div>
+    <h4>@Model.Name</h4>
+    @if(Model.StoreProducts.Any()) {
+        <table class="table">
+            <thead class="thead-light">
+                <tr>
+                    <th>@Html.DisplayNameFor(x => x.StoreProducts.First().Product.Name)</th>
+                    <th>@Html.DisplayNameFor(x => x.StoreProducts.First().Product.Price)</th>
+                    <th>@Html.DisplayNameFor(x => x.StoreProducts.First().Quantity)</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach(var storeProduct in Model.StoreProducts) {
+                    <tr>
+                        <td>@Html.DisplayFor(x => storeProduct.Product.Name)</td>
+                        <td>@Html.DisplayFor(x => storeProduct.Product.Price)</td>
+                        <td>@Html.DisplayFor(x => storeProduct.Quantity)</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    } else {
+        <p class="alert alert-info">This store has no products.</p>
+    }
+</div>
+<div>
+    <a asp-action="Index" class="btn btn-primary">Back</a>
+</div>

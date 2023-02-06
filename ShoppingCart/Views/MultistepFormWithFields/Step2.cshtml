@@ -1,0 +1,39 @@
+﻿@model MultiStepFormViewModel
+
+<h1>Multistep Form (With Fields) - Step 2</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-6">
+        <form asp-action="Complete">
+            @* NOTE: Could track state from previous steps with hidden fields. *@
+            @*<input asp-for="FirstName" type="hidden" />*@
+
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group row">
+                <label asp-for="FirstName" class="col-4 col-form-label control-label"></label>
+                <div class="col-8">
+                    @* NOTE: State is tracked from previous step with a field - alternatively use a hidden field. *@
+                    <input asp-for="FirstName" class="form-control-plaintext" readonly />
+                    
+                    @* NOTE: This element renders the data without a field and thus a hidden field would be needed *@
+                    @* to send the data when the form is submitted. *@
+                    @*<span class="form-control-plaintext">@Model.FirstName</span>*@
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="LastName" class="control-label"></label>
+                <input asp-for="LastName" class="form-control" />
+                <span asp-validation-for="LastName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Next Step" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+@*NOTE: Purposely disabled client-side validation to easier demonstrate server-side validation.*@
+@*@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}*@
